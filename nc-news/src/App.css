@@ -1,0 +1,11 @@
+.grid { 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 50px;
+  align-items: normal;
+  }
+
+.App {
+  text-align: center;
+}
+
