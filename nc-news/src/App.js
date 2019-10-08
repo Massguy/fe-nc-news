@@ -3,8 +3,9 @@ import './App.css';
 import Header from './Components/Header';
 import Nav from './Components/Nav';
 import ArticleList from './Components/articles/ArticleList';
+import SingleArticle from './Components/articles/SingleArticle'
 import { Router } from "@reach/router"
-import Homepage from './Components/Homepage';
+
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Header />
       <Nav />
       <Router>
-        <Homepage path='/' />
+        <ArticleList path='/' />
         <ArticleList path='/articles' />
+        <SingleArticle path='/articles/:id' />
       </Router>
     </div>
   );
