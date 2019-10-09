@@ -1,13 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import * as api from '../../api'
+import { Link } from "@reach/router";
 
 class GetTopics extends Component {
   state = { topics: [] }
   render() {
-    return (  );
+    const { topics } = this.state
+    return (<div>
+      {topics.map(topic => <div key={topic.slug}>
+        <Link to={`/articles/topics/${topic.slug}`}>
+          <h2>{topic.slug}</h2>
+        </Link>
+        <h3>{topic.description}</h3>
+      </div>)}
+    </div>);
   }
-  componentDidMount () {
-    api.getArticlesByTopic()
+  componentDidMount() {
+    api.getAllTopics().then(({ data }) => {
+      this.setState(data);
+    });
   }
 }
 

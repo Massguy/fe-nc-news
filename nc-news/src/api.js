@@ -9,22 +9,42 @@ export const getAllArticles = () => {
 export const getSingleArticle = (id) => {
   return axios.get(`${baseURL}/articles/${id}`)
     .then(response => {
-      console.log(response)
       return response.data.article
     })
 }
 
-// export const patchVote = () => {
-  
-// }
+export const getCommentByArticleid = (id) => {
+  return axios.get(`${baseURL}/articles/${id}/comments`)
+    .then(response => {
+      return response.data.comments
+    })
+}
 
-export const getAllTopics = () => {
-  return axios.get(`${baseURL}/topics`)
+export const updateArticleVote = (vote, id) => {
+  return axios.patch(`${baseURL}/articles/${id}`, {
+    incVotes: vote
+  })
+    .then(response => {
+      return response.data.updateVote
+    })
 }
 
 export const getArticlesByTopic = (slug) => {
   return axios.get(`${baseURL}/articles/topic?topic=${slug}`)
     .then(response => {
-      return response
+      return response.data.article
     })
+}
+
+
+export const AddArticle = article => {
+  return axios.post(
+    `${baseURL}/articles`,
+    article
+  );
+};
+
+
+export const getAllTopics = () => {
+  return axios.get(`${baseURL}/topics`)
 }

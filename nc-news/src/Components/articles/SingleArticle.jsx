@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import * as api from '../../api'
+import { Link } from "@reach/router";
 
 class SingleArticle extends Component {
   state = {
-    article: {}
+    article: {},
+    plusOne: 0
   }
-  // patchVotes = () => {
-  //   api.patchVote((this.props.article_id, { "inc_votes": 1 })
-  //     .then(data)
-  //   )
-  // }
   render() {
-    console.log(this.state)
     const {
-      article
+      article, plusOne
     } = this.state;
     return (
       <>
@@ -21,10 +17,21 @@ class SingleArticle extends Component {
         <h4>Author:{article.author}</h4>
         <h5>Time:{article.created_at}</h5>
         <p>{article.body}</p>
-        <p2>votes:{article.votes}</p2>
-        <button>vote</button>
+        <p>votes:{article.votes + plusOne}</p>
+        <button disabled={plusOne === 1} onClick={() => this.updateVote(1)}>Good</button>
+        <button disabled={plusOne === -1} onClick={() => this.updateVote(-1)}>Bad</button>
+        <Link to={`/articles/${article.article_id}/comments`}>
+          <h4>Show Comments</h4>
+        </Link>
       </>
     );
+  }
+  updateVote = value => {
+
+    api.updateArticleVote(value, this.props.article_id)
+    this.setState(prevState => {
+      return { plusOne: prevState.plusOne + value }
+    })
   }
   componentDidMount() {
     const { id } = this.props
@@ -32,6 +39,8 @@ class SingleArticle extends Component {
       return { article }
     }))
   }
+
+
 }
 
 export default SingleArticle;
