@@ -4,6 +4,15 @@
   text-align: center;
 } 
 
+.commentbox {
+ width: 90;
+  border: 5px solid rgb(179, 0, 0);
+  padding: 50px;
+  margin: 20px;
+  background-color: rgb(230, 230, 230);
+   box-shadow: 5px 10px #888888;
+}
+
 body {
   display: grid;
   grid-template-columns: 100%;

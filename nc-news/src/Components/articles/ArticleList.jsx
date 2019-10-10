@@ -6,14 +6,17 @@ import SortBy from '../articles/SortBy'
 class ArticleList extends Component {
   state = {
     articles: [],
-    sort_by: null
+    sort_by: null,
+    order: 'desc'
   }
   render() {
     const { articles } = this.state
     return (
       <div>
         <div>
-          <SortBy updateSortby={this.updateSortby} />
+          <SortBy updateSortby={this.updateSortby}
+            updateOrder={this.updateOrder}
+          />
           {articles.map(article => <div key={article.article_id}>
             <Link to={`/articles/${article.article_id}`}>
               <ArticleCard article={article} />
@@ -30,23 +33,29 @@ class ArticleList extends Component {
 
   updateSortby = (event) => {
     const sort_by = event.target.value
-    console.log(sort_by)
     this.setState({ sort_by })
 
   }
+
+  updateOrder = (event) => {
+    const order = event.target.value
+    this.setState({ order })
+  }
   componentDidMount() {
-    api.getAllArticles({ slug: this.props.slug }).then(({ data }) => {
+    const { sort_by, order } = this.state
+    api.getAllArticles({ slug: this.props.slug, sort_by, order }).then(({ data }) => {
       this.setState(data);
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { slug } = this.props
-    const { sort_by } = this.state
+    const { sort_by, order } = this.state
     const topicChange = (prevProps.slug !== slug)
     const changeBySort = (prevState.sort_by !== sort_by)
-    if (changeBySort || topicChange) {
-      api.getAllArticles({ slug, sort_by }).then(({ data }) => {
+    const changeOrder = (prevState.order !== order)
+    if (changeBySort || topicChange || changeOrder) {
+      api.getAllArticles({ slug, sort_by, order }).then(({ data }) => {
         this.setState(data)
       })
     }

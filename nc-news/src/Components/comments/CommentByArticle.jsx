@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
+import CommentCard from './CommentCard'
+import '../../App.css'
 import * as api from '../../api'
 class ArticleByCommentid extends Component {
   state = { comments: [] }
   render() {
     const { comments } = this.state
     return (<div>
-      {comments.map(comment => <div key={comment.comment_id}> <h3>
-        Author:{comment.author}
-      </h3>
-        <h4>Message:{comment.body}</h4>
+      {comments.map(comment => <div key={comment.comment_id}>
+        <CommentCard comment={comment} />
       </div>
       )}
     </div>);
