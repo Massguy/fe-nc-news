@@ -19,15 +19,20 @@ class ArticleList extends Component {
               <ArticleCard article={article} />
             </Link>
 
-
+            <p>Comments:{article.comment_count}</p>
+            <p>Created:{article.created_at.slice(0, 10)}</p>
+            <p>vote:{article.votes}</p>
           </div>)}
         </div>
       </div>
     );
   }
 
-  updateSortby = (sort_by) => {
+  updateSortby = (event) => {
+    const sort_by = event.target.value
+    console.log(sort_by)
     this.setState({ sort_by })
+
   }
   componentDidMount() {
     api.getAllArticles({ slug: this.props.slug }).then(({ data }) => {
@@ -40,12 +45,14 @@ class ArticleList extends Component {
     const { sort_by } = this.state
     const topicChange = (prevProps.slug !== slug)
     const changeBySort = (prevState.sort_by !== sort_by)
-    if (topicChange || changeBySort) {
+    if (changeBySort || topicChange) {
       api.getAllArticles({ slug, sort_by }).then(({ data }) => {
         this.setState(data)
       })
     }
   }
+
+
 }
 
 export default ArticleList;

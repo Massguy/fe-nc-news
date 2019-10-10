@@ -2,26 +2,22 @@ import React, { Component } from 'react'
 
 class SortBy extends Component {
   state = {
-    sort_by: 'votes',
-    order: 'desc'
+    sort_by: 'comment_count'
   }
   render() {
+    const { updateSortby } = this.props
     return (
       <form>
-        <select onChange={(event) => this.handleChange(event.target.value)}>
+        <select onChange={updateSortby}>
           <option value='comment_count'>comment_count</option>
-          <option value='date created'>date created</option>
+          <option value='created_at'>date created</option>
           <option value='votes'>votes</option>
         </select>
       </form>
 
     );
   }
-  handleChange = (value) => {
-    console.log(value)
-    const { updateSortby } = this.props
-    updateSortby(value)
-  }
+
 }
 
 export default SortBy;
