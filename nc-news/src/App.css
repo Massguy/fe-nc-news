@@ -2,5 +2,33 @@
 
 .App {
   text-align: center;
+} 
+
+body {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10vw 30vw 10vw;
+  grid-gap: 1em;
 }
 
+header,
+footer {
+  grid-column: 1 / span 2;
+}
+
+/* Demo Specific Styles */
+body {
+  margin: 0 auto;
+  max-width: 100em;
+  padding: 1em 0;
+}
+
+header,
+main,
+aside,
+footer {
+  background: #940505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

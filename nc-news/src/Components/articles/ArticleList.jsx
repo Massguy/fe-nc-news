@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import ArticleCard from './ArticleCard'
 import { Link } from "@reach/router";
 import * as api from './../../api'
-import AddArticle from './AddArticle';
+import SortBy from '../articles/SortBy'
 class ArticleList extends Component {
   state = {
-    articles: []
+    articles: [],
+    sort_by: null
   }
   render() {
     const { articles } = this.state
     return (
       <div>
-        <AddArticle postedArticle={this.postedArticle} />
         <div>
-
+          <SortBy updateSortby={this.updateSortby} />
           {articles.map(article => <div key={article.article_id}>
             <Link to={`/articles/${article.article_id}`}>
               <ArticleCard article={article} />
@@ -25,10 +25,26 @@ class ArticleList extends Component {
       </div>
     );
   }
+
+  updateSortby = (sort_by) => {
+    this.setState({ sort_by })
+  }
   componentDidMount() {
-    api.getAllArticles().then(({ data }) => {
+    api.getAllArticles({ slug: this.props.slug }).then(({ data }) => {
       this.setState(data);
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { slug } = this.props
+    const { sort_by } = this.state
+    const topicChange = (prevProps.slug !== slug)
+    const changeBySort = (prevState.sort_by !== sort_by)
+    if (topicChange || changeBySort) {
+      api.getAllArticles({ slug, sort_by }).then(({ data }) => {
+        this.setState(data)
+      })
+    }
   }
 }
 

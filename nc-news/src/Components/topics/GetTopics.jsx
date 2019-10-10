@@ -8,7 +8,7 @@ class GetTopics extends Component {
     const { topics } = this.state
     return (<div>
       {topics.map(topic => <div key={topic.slug}>
-        <Link to={`/articles/topics/${topic.slug}`}>
+        <Link to={`/topics/${topic.slug}`}>
           <h2>{topic.slug}</h2>
         </Link>
         <h3>{topic.description}</h3>
@@ -20,6 +20,7 @@ class GetTopics extends Component {
       this.setState(data);
     });
   }
+
 }
 
 export default GetTopics;

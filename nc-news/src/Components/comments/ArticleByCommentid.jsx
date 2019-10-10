@@ -5,7 +5,7 @@ class ArticleByCommentid extends Component {
   render() {
     const { comments } = this.state
     return (<div>
-      {comments.map(comment => <div> <h3>
+      {comments.map(comment => <div key={comment.comment_id}> <h3>
         Author:{comment.author}
       </h3>
         <h4>Message:{comment.body}</h4>

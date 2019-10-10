@@ -2,8 +2,13 @@ import axios from 'axios'
 
 const baseURL = 'https://be-nc-news-stefin.herokuapp.com/api'
 
-export const getAllArticles = () => {
-  return axios.get(`${baseURL}/articles`)
+export const getAllArticles = ({ slug, sort_by }) => {
+  return axios.get(`${baseURL}/articles`, {
+    params: {
+      topic: slug,
+      sort: sort_by
+    }
+  })
 }
 
 export const getSingleArticle = (id) => {
@@ -29,20 +34,6 @@ export const updateArticleVote = (vote, id) => {
     })
 }
 
-export const getArticlesByTopic = (slug) => {
-  return axios.get(`${baseURL}/articles/topic?topic=${slug}`)
-    .then(response => {
-      return response.data.article
-    })
-}
-
-
-export const AddArticle = article => {
-  return axios.post(
-    `${baseURL}/articles`,
-    article
-  );
-};
 
 
 export const getAllTopics = () => {
