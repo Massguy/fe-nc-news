@@ -8,7 +8,7 @@ class ArticleByCommentid extends Component {
   render() {
     const { comments } = this.state
     return (<div>
-      <CommentBox />
+      <CommentBox newComments={this.newComments} />
       {comments.map(comment => <div key={comment.comment_id}>
         <CommentCard comment={comment} />
       </div>

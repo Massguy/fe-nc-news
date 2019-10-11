@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
-
+import * as api from '../api'
 
 class Login extends Component {
   state = {}
   render() {
-    return (  );
+    return ();
+  }
+
+  componentDidMount() {
+    api.getUsers().then(({ data }) => {
+      this.setState(data)
+    });
   }
 }
 

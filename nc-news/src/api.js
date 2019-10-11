@@ -57,3 +57,7 @@ export const getAllTopics = () => {
   return axios.get(`${baseURL}/topics`)
 }
 
+export const getUsers = () => {
+  return axios.get(`${baseURL}/users`)
+}
+

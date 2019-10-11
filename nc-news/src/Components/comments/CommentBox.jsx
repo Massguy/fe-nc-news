@@ -5,7 +5,7 @@ class CommentBox extends Component {
   render() {
     return (<form>
       <textarea onchange={this.handleChange}></textarea>
-      <button type='submit' onClick={this.postedComment}>submit</button>
+      <button type='submit' onClick={this.handleSubmit}>submit</button>
     </form>);
   }
   handleChange = (event) => {
@@ -13,9 +13,14 @@ class CommentBox extends Component {
     this.setState({ body: typedComment })
   }
 
-  postedComment = (event) => {
+  handleSubmit = (event) => {
+    const { postedComment } = this.props.article_id
     event.preventDefault()
-
+    const user = {
+      author: this.state.author,
+      body: this.state.body
+    };
+    api.postComment(user)
   }
 
 }
