@@ -7,7 +7,8 @@ class ArticleList extends Component {
   state = {
     articles: [],
     sort_by: null,
-    order: 'desc'
+    order: 'desc',
+    author: null
   }
   render() {
     const { articles } = this.state
@@ -16,19 +17,23 @@ class ArticleList extends Component {
         <div>
           <SortBy updateSortby={this.updateSortby}
             updateOrder={this.updateOrder}
+            updateAuthor={this.updateAuthor}
           />
-          {articles.map(article => <div key={article.article_id}>
-            <Link to={`/articles/${article.article_id}`}>
-              <ArticleCard article={article} />
-            </Link>
+          {articles.map(article =>
+            <div key={article.article_id}>
+              <Link to={`/articles/${article.article_id}`}>
+                <ArticleCard article={article} />
+              </Link>
 
-            <p>Comments:{article.comment_count}</p>
-            <p>Created:{article.created_at.slice(0, 10)}</p>
-            <p>vote:{article.votes}</p>
-          </div>)}
+              <p>Comments:{article.comment_count}</p>
+              <p>author:{article.author}</p>
+              <p>Created:{article.created_at.slice(0, 10)}</p>
+              <p>vote:{article.votes}</p>
+            </div>)}
         </div>
       </div>
     );
+
   }
 
   updateSortby = (event) => {
@@ -41,27 +46,37 @@ class ArticleList extends Component {
     const order = event.target.value
     this.setState({ order })
   }
+  updateAuthor = (event) => {
+    const author = event.target.value
+    if (author === 'none') {
+      this.setState({ author: null })
+    }
+    else {
+      this.setState({ author })
+    }
+  }
+
   componentDidMount() {
-    const { sort_by, order } = this.state
-    api.getAllArticles({ slug: this.props.slug, sort_by, order }).then(({ data }) => {
+    const { sort_by, order, author } = this.state
+    console.log(this.props.slug, 'didMount')
+    api.getAllArticles({ slug: this.props.slug, sort_by, order, author }).then(({ data }) => {
       this.setState(data);
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { slug } = this.props
-    const { sort_by, order } = this.state
+    const { sort_by, order, author } = this.state
     const topicChange = (prevProps.slug !== slug)
     const changeBySort = (prevState.sort_by !== sort_by)
     const changeOrder = (prevState.order !== order)
-    if (changeBySort || topicChange || changeOrder) {
-      api.getAllArticles({ slug, sort_by, order }).then(({ data }) => {
+    const byAuthor = (prevState.author !== author)
+    if (changeBySort || topicChange || changeOrder || byAuthor) {
+      api.getAllArticles({ slug, sort_by, order, author }).then(({ data }) => {
         this.setState(data)
-      })
+      }).catch(console.log)
     }
   }
-
-
 }
 
 export default ArticleList;

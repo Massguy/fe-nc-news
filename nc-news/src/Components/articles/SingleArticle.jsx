@@ -28,7 +28,7 @@ class SingleArticle extends Component {
   }
   updateVote = value => {
 
-    api.updateArticleVote(value, this.props.article_id)
+    api.updateArticleVote(value, this.state.article.article_id)
     this.setState(prevState => {
       return { plusOne: prevState.plusOne + value }
     })
