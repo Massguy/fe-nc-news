@@ -5,7 +5,7 @@ const Error404 = () => {
   return (
     <div>
       <p>Page Not Found</p>
-      <button onClick={backToHomePage}>Go back to Homepage</button>
+      <button onClick={backToHomePage}>Go back to Homepage :)</button>
     </div>
   )
 }
