@@ -13,6 +13,7 @@ class SingleArticle extends Component {
     } = this.state;
     return (
       <>
+
         <h1>{article.title}</h1>
         <h4>Author:{article.author}</h4>
         <h5>Time:{article.created_at}</h5>
@@ -23,6 +24,7 @@ class SingleArticle extends Component {
         <Link to={`/articles/${article.article_id}/comments`}>
           <h4>Show Comments</h4>
         </Link>
+
       </>
     );
   }
