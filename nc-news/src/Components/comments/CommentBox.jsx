@@ -1,28 +1,25 @@
 import React, { Component } from 'react'
-import * as api from '../../api'
 class CommentBox extends Component {
-  state = { author: null, body: "" }
+  state = { username: "", body: "" }
   render() {
-    return (<form>
-      <textarea onchange={this.handleChange}></textarea>
-      <button type='submit' onClick={this.handleSubmit}>submit</button>
+    const { username } = this.props;
+    return (<form onSubmit={this.handleSubmit}>
+      <label>Have a say {username}
+        <textarea onChange={this.handleChange} ></textarea>
+      </label>
+      <button type='submit'>submit</button>
     </form>);
   }
-  handleChange = (event) => {
-    const typedComment = event.target.value
-    this.setState({ body: typedComment })
-  }
-
-  handleSubmit = (event) => {
-    const { postedComment } = this.props.article_id
-    event.preventDefault()
-    const user = {
-      author: this.state.author,
-      body: this.state.body
-    };
-    api.postComment(user)
-  }
-
+  handleChange = event => {
+    const body = event.target.value;
+    const { username } = this.props;
+    this.setState({ username, body });
+  };
+  handleSubmit = event => {
+    event.preventDefault();
+    const { addComment, id } = this.props;
+    addComment(id, this.state);
+    this.setState({ body: "" });
+  };
 }
-
 export default CommentBox;
