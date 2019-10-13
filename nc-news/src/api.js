@@ -56,15 +56,18 @@ export const updateCommentVote = (vote, id) => {
     });
 }
 
-export const postComment = (id, comment) => {
-  return axios.post(`${baseURL}/articles/${id}/comments`, comment)
+export const postComment = (id, body) => {
+  return axios.post(`${baseURL}/articles/${id}/comments`, body)
     .then(response => {
-      return response.data.comment[0]
+      return response.data.comment
+
     }).catch(error => {
       console.log(error)
     });
 }
-
+export const deleteComment = (id) => {
+  return axios.delete(`${baseURL}/articles/${id}/comments`)
+}
 export const getAllTopics = () => {
   return axios.get(`${baseURL}/topics`)
     .catch(error => {

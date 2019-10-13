@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import CommentCard from './CommentCard'
 import '../../App.css'
@@ -6,11 +7,14 @@ import CommentBox from './CommentBox';
 class ArticleByCommentid extends Component {
   state = { comments: [] }
   render() {
+    const { username } = this.props
     const { comments } = this.state
+
     return (<div>
-      <CommentBox newComments={this.newComments} />
-      {comments.map(comment => <div key={comment.comment_id}>
-        <CommentCard comment={comment} />
+      <CommentBox addComment={this.addComment} username={username} />
+      {comments.map(comment => <div key=
+        {comment.comment_id}>
+        <CommentCard comment={comment} username={username} />
       </div>
       )}
     </div>);
@@ -23,6 +27,22 @@ class ArticleByCommentid extends Component {
       })
     )
   }
-}
+  addComment = (id, body) => {
 
+    api.postComment(id, body).then(newComment => {
+      this.setState(previousState => {
+        const existingComments =
+          previousState.comments.map(comment => {
+            const copyComment = { ...comment };
+            return copyComment;
+
+          });
+        return { comments: [...existingComments, newComment] };
+
+      });
+    });
+  };
+
+
+}
 export default ArticleByCommentid;
