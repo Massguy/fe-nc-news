@@ -8,7 +8,7 @@ class CommentCard extends Component {
     const {
       plusOne
     } = this.state;
-    const { comment } = this.props
+    const { comment, username } = this.props
     return (
 
       <div className='commentbox'>
@@ -19,6 +19,7 @@ class CommentCard extends Component {
         <p>Votes:{comment.votes + plusOne}</p>
         <button disabled={plusOne === 1} onClick={() => this.updateVote(1)}>Good</button>
         <button disabled={plusOne === -1} onClick={() => this.updateVote(-1)}>Bad</button>
+        {username === comment.author && (<button onClick={this.handleDelete} > Delete Comment</button>)}
       </div>
     );
   }
@@ -27,6 +28,14 @@ class CommentCard extends Component {
     this.setState(prevState => {
       return { plusOne: prevState.plusOne + value }
     })
+  }
+
+  handleDelete = () => {
+    const {
+      comment: { comment_id },
+      deleteComments
+    } = this.props
+    deleteComments(comment_id)
   }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as api from '../../api'
 class CommentBox extends Component {
   state = { username: "", body: "" }
   render() {
@@ -17,9 +18,13 @@ class CommentBox extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const { addComment, id } = this.props;
-    addComment(id, this.state);
-    this.setState({ body: "" });
+    const { id } = this.props;
+    console.log(id)
+    console.log(this.state.body)
+    api.postComment(id, this.state).then(newComment => {
+      this.props.updateComments(newComment)
+    })
+
   };
 }
 export default CommentBox;

@@ -8,12 +8,14 @@ class ArticleByCommentid extends Component {
   state = { comments: [] }
   render() {
     const { username, id } = this.props
+    console.log(id)
     const { comments } = this.state
     return (<div>
-      <CommentBox addComment={this.addComment} username={username} id={id} />
+      <CommentBox updateComments={this.updateComments} username={username} id={id} />
+
       {comments.map(comment => <div key=
         {comment.comment_id}>
-        <CommentCard comment={comment} username={username} />
+        <CommentCard comment={comment} username={username} deleteComments={this.deleteComments} />
       </div>
       )}
     </div>);
@@ -26,22 +28,23 @@ class ArticleByCommentid extends Component {
       })
     )
   }
-  addComment = (id, body) => {
-    api.postComment(id, body).then(newComment => {
-      console.log(newComment, "<----")
-      this.setState(previousState => {
-        const existingComments =
-          previousState.comments.map(comment => {
-            const copyComment = { ...comment };
-            return copyComment;
+  updateComments = (newComment) => {
+    this.setState(prevState => {
+      return { comments: [...prevState.comments, newComment] }
+    })
+  }
 
-          });
-        return { comments: [...existingComments, newComment] };
-
-      });
-    });
-  };
-
+  deleteComments = comment_id => {
+    api.deleteComment(comment_id).then(() => {
+      this.setState(({ comments }) => {
+        const copyComments = [...comments]
+        const filterstate = copyComments.filter(comment => {
+          return comment.comment_id !== comment_id
+        })
+        return { comments: filterstate }
+      })
+    })
+  }
 
 }
 export default ArticleByCommentid;

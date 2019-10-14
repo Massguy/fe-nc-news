@@ -66,8 +66,8 @@ export const postComment = (id, body) => {
       console.log(error)
     });
 }
-export const deleteComment = (id) => {
-  return axios.delete(`${baseURL}/articles/${id}/comments`)
+export const deleteComment = (comment_id) => {
+  return axios.delete(`${baseURL}/comments/${comment_id}`)
 }
 export const getAllTopics = () => {
   return axios.get(`${baseURL}/topics`)

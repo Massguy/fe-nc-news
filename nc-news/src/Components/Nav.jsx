@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../App.css'
 import { Link } from "@reach/router";
 
 class Nav extends Component {
@@ -7,7 +7,7 @@ class Nav extends Component {
     const { username } = this.props
     return (
       <nav>
-        <Link to='/'> <button>Home</button></Link>
+        <Link to='/'> <button className='homeButton'>Home</button></Link>
         <Link to='/topics/cooking'><button>Cooking</button></Link>
         <Link to='/topics/football'><button>Football</button></Link>
         <Link to='/topics/coding'><button>Coding</button></Link>
