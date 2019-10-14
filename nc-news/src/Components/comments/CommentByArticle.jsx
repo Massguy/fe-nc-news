@@ -7,11 +7,10 @@ import CommentBox from './CommentBox';
 class ArticleByCommentid extends Component {
   state = { comments: [] }
   render() {
-    const { username } = this.props
+    const { username, id } = this.props
     const { comments } = this.state
-
     return (<div>
-      <CommentBox addComment={this.addComment} username={username} />
+      <CommentBox addComment={this.addComment} username={username} id={id} />
       {comments.map(comment => <div key=
         {comment.comment_id}>
         <CommentCard comment={comment} username={username} />
@@ -28,8 +27,8 @@ class ArticleByCommentid extends Component {
     )
   }
   addComment = (id, body) => {
-
     api.postComment(id, body).then(newComment => {
+      console.log(newComment, "<----")
       this.setState(previousState => {
         const existingComments =
           previousState.comments.map(comment => {

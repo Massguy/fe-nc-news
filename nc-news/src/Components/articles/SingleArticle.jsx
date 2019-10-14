@@ -3,6 +3,7 @@ import * as api from '../../api'
 import { Link } from "@reach/router";
 
 class SingleArticle extends Component {
+  ''
   state = {
     article: {},
     plusOne: 0

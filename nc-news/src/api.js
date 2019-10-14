@@ -59,6 +59,7 @@ export const updateCommentVote = (vote, id) => {
 export const postComment = (id, body) => {
   return axios.post(`${baseURL}/articles/${id}/comments`, body)
     .then(response => {
+      console.log(response.data, "response")
       return response.data.comment
 
     }).catch(error => {

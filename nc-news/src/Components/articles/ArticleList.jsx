@@ -24,7 +24,6 @@ class ArticleList extends Component {
               <Link to={`/articles/${article.article_id}`}>
                 <ArticleCard article={article} />
               </Link>
-
               <p>Comments:{article.comment_count}</p>
               <p>author:{article.author}</p>
               <p>Created:{article.created_at.slice(0, 10)}</p>
