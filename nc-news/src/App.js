@@ -7,7 +7,9 @@ import SingleArticle from './Components/articles/SingleArticle'
 import GetTopics from './Components/topics/GetTopics'
 import { Router } from "@reach/router"
 import CommentByArticle from './Components/comments/CommentByArticle'
+import FetchUsers from './Components/Users/FetchUsers'
 import Error404 from './Components/Error404';
+import FetchUserByUsername from './Components/Users/FetchUserByUsername';
 class App extends Component {
   state = {
     username: 'grumpy19'
@@ -22,6 +24,8 @@ class App extends Component {
           <ArticleList path='/' />
           <ArticleList path='/articles' />
           <ArticleList path='/topics/:slug' />
+          <FetchUsers path='/users' />
+          <FetchUserByUsername path='/users/:username' />
           <SingleArticle path='/articles/:id' />
           <GetTopics path='/topics' />
           <CommentByArticle path='/articles/:id/comments' username={username} />

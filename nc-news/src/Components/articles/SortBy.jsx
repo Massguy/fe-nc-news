@@ -8,20 +8,20 @@ class SortBy extends Component {
   render() {
     const { updateSortby, updateOrder, updateAuthor } = this.props
     return (
-      <div>
-        <form>Filter:
+      <div className='sortBy'>
+        <form className='commentCount'>Filter:
           <select onChange={updateSortby}>
             <option value='comment_count'>comment_count</option>
             <option value='created_at'>date created</option>
             <option value='votes'>votes</option>
           </select>
         </form>
-        <form>Order:<select onChange={updateOrder}>
+        <form className='order'>Order:<select onChange={updateOrder}>
           <option value='asc'>ascending</option>
           <option value='desc'>descending</option>
         </select>
         </form>
-        <form>Select By Author:
+        <form>Author:
           <select onChange={updateAuthor}>
             <option value='none'>none </option>
             <option value='weegembump'>weegembump </option>

@@ -3,9 +3,10 @@ import * as api from '../../api'
 import { Link } from "@reach/router";
 
 class GetTopics extends Component {
-  state = { topics: [] }
+  state = { topics: [], error: null }
   render() {
     const { topics } = this.state
+
     return (<div>
       {topics.map(topic => <div key={topic.slug}>
         <Link to={`/topics/${topic.slug}`}>
@@ -18,7 +19,7 @@ class GetTopics extends Component {
   componentDidMount() {
     api.getAllTopics().then(({ data }) => {
       this.setState(data);
-    });
+    })
   }
 
 }

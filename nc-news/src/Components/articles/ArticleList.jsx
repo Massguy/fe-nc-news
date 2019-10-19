@@ -3,34 +3,43 @@ import ArticleCard from './ArticleCard'
 import { Link } from "@reach/router";
 import * as api from './../../api'
 import SortBy from '../articles/SortBy'
+import Loading from '../Loading'
 class ArticleList extends Component {
   state = {
     articles: [],
     sort_by: null,
     order: 'desc',
-    author: null
+    author: null,
+    isLoading: true
   }
   render() {
-    const { articles } = this.state
+    const { articles, isLoading } = this.state
+    if (isLoading) return <Loading />
     return (
-      <div>
-        <div>
+      <section>
+        <div className="articleHome">
           <SortBy updateSortby={this.updateSortby}
             updateOrder={this.updateOrder}
             updateAuthor={this.updateAuthor}
           />
-          {articles.map(article =>
-            <div key={article.article_id}>
-              <Link to={`/articles/${article.article_id}`}>
-                <ArticleCard article={article} />
-              </Link>
-              <p>Comments:{article.comment_count}</p>
-              <p>author:{article.author}</p>
-              <p>Created:{article.created_at.slice(0, 10)}</p>
-              <p>vote:{article.votes}</p>
-            </div>)}
+          {articles.length !== 0 &&
+            <main>
+              <Link to='/users'><h2>Find All users</h2></Link>
+              {articles.map(article =>
+
+                <div className='articlecard' key={article.article_id}>
+                  <Link to={`/articles/${article.article_id}`}>
+                    <ArticleCard article={article} />
+                  </Link>
+                  <p>Comments:{article.comment_count}</p>
+                  <p>author:{article.author}</p>
+                  <p>Created:{article.created_at.slice(0, 10)}</p>
+                  <p>vote:{article.votes}</p>
+                </div>)}
+            </main>
+          }
         </div>
-      </div>
+      </section>
     );
 
   }
@@ -57,10 +66,10 @@ class ArticleList extends Component {
 
   componentDidMount() {
     const { sort_by, order, author } = this.state
-    console.log(this.props.slug, 'didMount')
     api.getAllArticles({ slug: this.props.slug, sort_by, order, author }).then(({ data }) => {
-      this.setState(data);
-    });
+      console.log(data)
+      this.setState({ articles: data.articles, isLoading: false });
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -72,7 +81,8 @@ class ArticleList extends Component {
     const byAuthor = (prevState.author !== author)
     if (changeBySort || topicChange || changeOrder || byAuthor) {
       api.getAllArticles({ slug, sort_by, order, author }).then(({ data }) => {
-        this.setState(data)
+        console.log(data)
+        this.setState({ articles: data.articles })
       }).catch(console.log)
     }
   }

@@ -2,23 +2,88 @@
 
 .App {
   text-align: center;
+     background-image: linear-gradient(to top, #ffffff 0%, #ccffff 100%);
 } 
 
+.Header{
+   overflow: hidden;
+  padding: 20px 10px;
+  width:100%;
+}
+.head{
+  align-content: flex-start;
+}
+.navBar {
+   /* padding: 14px 16px; */
+    margin-left: 25%;
+    margin-right: 25%;
+     border-radius: 50px;
+}
+.errorHead{
+  font-size: 100px;
+  background-color: red;
+}
+
+.errorMessage{
+  font-size: 50px;
+  background-color: red;
+}
+.articleHome{
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  margin:50px;
+  border-radius: 50px;
+}
+.articleHome:hover{
+     background:linear-gradient(to top, #ff9900 0%, #ffffcc 100%);
+}
+
+.singleArticle {
+  box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 100);
+  background-color: #ffffff;
+  margin:5%;
+  border-radius: 20px;
+  padding: 26px;
+}
+
+.articleBody{
+    
+    background-color:white;
+    line-height:250%;
+}
+.articlecard{
+    box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 100);
+  padding: 26px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  margin:20px;
+
+}
+
+.commentCount{
+  margin:10px;
+}
+.order{
+  margin:10px;
+}
 .commentbox {
  width: 90;
-  border: 5px solid rgb(179, 0, 0);
+  border: 5px solid rgb(231, 26, 26);
   padding: 50px;
-  margin: 20px;
+  margin: 30px;
   background-color: rgb(230, 230, 230);
    box-shadow: 5px 10px #888888;
 }
 .homeButton {
-    background-color: white;
+    background-color:orange;
   color: black;
   border: 2px solid #4CAF50;
    transition-duration: 0.4s;
    border-radius: 15px;
    font-size:30px;
+   margin:10px;
 
 }
 .homeButton:hover{
@@ -26,31 +91,47 @@
   color: white;
 }
 
-body {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 10vw 30vw 10vw;
-  grid-gap: 1em;
+.cookingButton{
+    background-color:orange;
+  color: black;
+  border: 2px solid #4CAF50;
+   transition-duration: 0.4s;
+   border-radius: 15px;
+   font-size:30px;
+   margin:10px;
+
+}
+.cookingButton:hover{
+   background-color: #4CAF50; /* Green */
+  color: white;
 }
 
-header,
-footer {
-  grid-column: 1 / span 2;
+.footballButton{
+      background-color:orange;
+  color: black;
+  border: 2px solid #4CAF50;
+   transition-duration: 0.4s;
+   border-radius: 15px;
+   font-size:30px;
+   margin:10px;
+
+}
+.footballButton:hover{
+   background-color: #4CAF50; /* Green */
+  color: white;
 }
 
-/* Demo Specific Styles */
-body {
-  margin: 0 auto;
-  max-width: 100em;
-  padding: 1em 0;
-}
+.codingButton{
+      background-color:orange;
+  color: black;
+  border: 2px solid #4CAF50;
+   transition-duration: 0.4s;
+   border-radius: 15px;
+   font-size:30px;
+   margin:10px;
 
-header,
-main,
-aside,
-footer {
-  background: #940505;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+.codingButton:hover{
+   background-color: #4CAF50; /* Green */
+  color: white;
 }

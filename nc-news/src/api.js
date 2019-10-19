@@ -2,13 +2,14 @@ import axios from 'axios'
 
 const baseURL = 'https://be-nc-news-stefin.herokuapp.com/api'
 
-export const getAllArticles = ({ slug, sort_by, author, order }) => {
+export const getAllArticles = ({ slug, sort_by, author, order, p }) => {
   return axios.get(`${baseURL}/articles`, {
     params: {
       topic: slug,
       sort_by: sort_by,
       order: order,
-      author: author
+      author: author,
+      pagination: p,
     }
   }).catch(error => {
     console.log(error)
@@ -59,7 +60,7 @@ export const updateCommentVote = (vote, id) => {
 export const postComment = (id, body) => {
   return axios.post(`${baseURL}/articles/${id}/comments`, body)
     .then(response => {
-      console.log(response.data, "response")
+
       return response.data.comment
 
     }).catch(error => {
@@ -79,5 +80,11 @@ export const getAllTopics = () => {
 export const getUsers = () => {
   return axios.get(`${baseURL}/users`).catch(error => {
     console.log(error)
+  });
+}
+
+export const getUserByUsername = (username) => {
+  return axios.get(`${baseURL}/users/${username}`).then(response => {
+    return response.data.user
   });
 }

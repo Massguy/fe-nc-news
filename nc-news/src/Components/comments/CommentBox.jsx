@@ -19,8 +19,6 @@ class CommentBox extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { id } = this.props;
-    console.log(id)
-    console.log(this.state.body)
     api.postComment(id, this.state).then(newComment => {
       this.props.updateComments(newComment)
     })

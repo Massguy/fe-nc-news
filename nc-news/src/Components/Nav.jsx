@@ -6,13 +6,13 @@ class Nav extends Component {
   render() {
     const { username } = this.props
     return (
-      <nav>
+      <nav className='navBar'>
         <Link to='/'> <button className='homeButton'>Home</button></Link>
-        <Link to='/topics/cooking'><button>Cooking</button></Link>
-        <Link to='/topics/football'><button>Football</button></Link>
-        <Link to='/topics/coding'><button>Coding</button></Link>
+        <Link to='/topics/cooking'><button className='cookingButton' onClick={this.cooking}>Cooking</button></Link>
+        <Link to='/topics/football'><button className='footballButton'>Football</button></Link>
+        <Link to='/topics/coding'><button className='codingButton'>Coding</button></Link>
         <p>logged in as {username} </p>
-      </nav>
+      </nav >
     );;
   }
 }

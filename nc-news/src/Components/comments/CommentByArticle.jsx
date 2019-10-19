@@ -30,7 +30,7 @@ class ArticleByCommentid extends Component {
   }
   updateComments = (newComment) => {
     this.setState(prevState => {
-      return { comments: [...prevState.comments, newComment] }
+      return { comments: [newComment, ...prevState.comments] }
     })
   }
 

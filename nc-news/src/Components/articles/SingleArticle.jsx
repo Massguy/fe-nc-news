@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import * as api from '../../api'
 import { Link } from "@reach/router";
+import { navigate } from '@reach/router/lib/history';
+import Error404 from '../Error404'
 
 class SingleArticle extends Component {
   ''
   state = {
     article: {},
-    plusOne: 0
+    plusOne: 0,
+    error: null
   }
   render() {
     const {
-      article, plusOne
+      article, plusOne, error
     } = this.state;
-    return (
-      <>
 
+    if (article === undefined) {
+      return <Error404 {...error} />;
+    }
+    return (
+      <div className='singleArticle'>
         <h1>{article.title}</h1>
         <h4>Author:{article.author}</h4>
-        <h5>Time:{article.created_at}</h5>
-        <p>{article.body}</p>
+        <p className='articleBody'>{article.body}</p>
         <p>votes:{article.votes + plusOne}</p>
         <button disabled={plusOne === 1} onClick={() => this.updateVote(1)}>Good</button>
         <button disabled={plusOne === -1} onClick={() => this.updateVote(-1)}>Bad</button>
@@ -26,7 +31,7 @@ class SingleArticle extends Component {
           <h4>Show Comments</h4>
         </Link>
 
-      </>
+      </div >
     );
   }
   updateVote = value => {
@@ -38,11 +43,16 @@ class SingleArticle extends Component {
   }
   componentDidMount() {
     const { id } = this.props
-    api.getSingleArticle(id).then(article => this.setState(() => {
-      return { article }
-    }))
+    api.getSingleArticle(id).then(article => this.setState({ article, error: null })
+    ).catch((error) => {
+      const { msg } = error.response.data;
+      const { status } = error.response;
+      this.setState({ error: { status, msg } });
+    });
   }
-
+  navigateArticles = () => {
+    navigate('/')
+  }
 
 }
 
