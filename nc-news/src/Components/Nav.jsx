@@ -13,7 +13,8 @@ class Nav extends Component {
         <Link to='/topics/coding'><button className='codingButton'>Coding</button></Link>
         <p>logged in as {username} </p>
       </nav >
-    );;
+
+    );
   }
 }
 

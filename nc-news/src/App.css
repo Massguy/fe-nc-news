@@ -2,7 +2,7 @@
 
 .App {
   text-align: center;
-     background-image: linear-gradient(to top, #ffffff 0%, #ccffff 100%);
+     background-image: linear-gradient(to top, #ffffff 0%, rgb(252, 153, 5));
 } 
 
 .Header{
@@ -77,7 +77,7 @@
    box-shadow: 5px 10px #888888;
 }
 .homeButton {
-    background-color:orange;
+    background-color:rgb(209, 182, 240);
   color: black;
   border: 2px solid #4CAF50;
    transition-duration: 0.4s;
@@ -92,7 +92,7 @@
 }
 
 .cookingButton{
-    background-color:orange;
+    background-color:rgb(209, 182, 240);
   color: black;
   border: 2px solid #4CAF50;
    transition-duration: 0.4s;
@@ -107,7 +107,7 @@
 }
 
 .footballButton{
-      background-color:orange;
+      background-color:rgb(209, 182, 240);
   color: black;
   border: 2px solid #4CAF50;
    transition-duration: 0.4s;
@@ -122,7 +122,7 @@
 }
 
 .codingButton{
-      background-color:orange;
+      background-color:rgb(209, 182, 240);
   color: black;
   border: 2px solid #4CAF50;
    transition-duration: 0.4s;

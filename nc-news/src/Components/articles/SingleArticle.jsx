@@ -30,7 +30,6 @@ class SingleArticle extends Component {
         <Link to={`/articles/${article.article_id}/comments`}>
           <h4>Show Comments</h4>
         </Link>
-
       </div >
     );
   }

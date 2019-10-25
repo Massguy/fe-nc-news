@@ -36,6 +36,7 @@ class ArticleList extends Component {
                   <p>Created:{article.created_at.slice(0, 10)}</p>
                   <p>vote:{article.votes}</p>
                 </div>)}
+
             </main>
           }
         </div>

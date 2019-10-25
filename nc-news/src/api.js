@@ -9,7 +9,7 @@ export const getAllArticles = ({ slug, sort_by, author, order, p }) => {
       sort_by: sort_by,
       order: order,
       author: author,
-      pagination: p,
+      p: p,
     }
   }).catch(error => {
     console.log(error)
@@ -87,4 +87,17 @@ export const getUserByUsername = (username) => {
   return axios.get(`${baseURL}/users/${username}`).then(response => {
     return response.data.user
   });
+}
+
+export const postArticle = ({ title, body, author, slug }) => {
+  return axios.post(`${baseURL}/articles`, {
+    params: {
+      topic: slug,
+      body: body,
+      author: author,
+      title: title
+    }
+  }).then(response => {
+    return response.data.article
+  })
 }

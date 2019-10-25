@@ -29,6 +29,7 @@ class SortBy extends Component {
             <option value='happyamy2016'>happyamy2016 </option>
             <option value='jessjelly'>jessjelly </option>
             <option value='tickle122'>tickle122 </option>
+            <option value='cooljmessy'>cooljmessy </option>
           </select>
         </form>
       </div>
