@@ -7,7 +7,7 @@ import CommentBox from './CommentBox';
 import ErrorHandle from '../ErrorHandle';
 import Loading from '../Loading'
 class ArticleByCommentid extends Component {
-  state = { comments: [], error: null, isLoading: true }
+  state = { comments: [], error: null, isLoading: false }
   render() {
     const { username, id } = this.props
     // console.log(id)
@@ -36,7 +36,7 @@ class ArticleByCommentid extends Component {
       console.log(error)
       const { status } = error.response;
       const { msg } = error.response.data
-      this.setState({ error: { status, msg }, isLoading: false })
+      this.setState({ error: { status, msg }, isLoading: true })
     })
   }
   updateComments = (newComment) => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as api from '../../api'
-import { Link } from "@reach/router"; s
+import { Link } from "@reach/router";
 import Loading from '../Loading'
 class FetchUsers extends Component {
   state = { users: [], isLoading: true }
