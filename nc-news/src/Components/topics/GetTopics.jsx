@@ -4,7 +4,7 @@ import { Link } from "@reach/router";
 import ErrorHandle from '../ErrorHandle';
 
 class GetTopics extends Component {
-  state = { topics: [], error: null }
+  state = { topics: [], error: null, isLoading: true }
   render() {
     const { topics, error } = this.state
     if (topics.length === 0) return <ErrorHandle msg={error.msg} />
@@ -23,7 +23,7 @@ class GetTopics extends Component {
     })
       .catch((error) => {
         const { msg } = error.response.data
-        this.setState({ error: { msg } })
+        this.setState({ error: { msg }, isLoading: false })
       })
   }
 

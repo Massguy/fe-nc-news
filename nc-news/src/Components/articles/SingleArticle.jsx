@@ -9,16 +9,17 @@ class SingleArticle extends Component {
   state = {
     article: {},
     plusOne: 0,
-    error: null
+    error: null,
+    isLoading: true
   }
   render() {
     const {
-      article, plusOne, error
+      article, plusOne, error, isLoading
     } = this.state;
 
     if (error)
       return <ErrorHandle status={error.status} msg={error.msg} />;
-
+    if (isLoading) return <Loading />
     return (
       <div className='singleArticle'>
         <h1>{article.title}</h1>
@@ -43,14 +44,12 @@ class SingleArticle extends Component {
   componentDidMount() {
     const { id } = this.props
     api.getSingleArticle(id).then(article => {
-      console.log(article)
-      this.setState({ article, error: null })
+      this.setState({ article, error: null, isLoading: false })
     }
     ).catch((error) => {
-      console.log(error)
       const { msg } = error.response.data;
       const { status } = error.response;
-      this.setState({ error: { status, msg } });
+      this.setState({ error: { status, msg }, isLoading: false });
     });
   }
 

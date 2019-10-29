@@ -6,7 +6,7 @@ import * as api from '../../api'
 import CommentBox from './CommentBox';
 import ErrorHandle from '../ErrorHandle';
 class ArticleByCommentid extends Component {
-  state = { comments: [], error: null }
+  state = { comments: [], error: null, isLoading: true }
   render() {
     const { username, id } = this.props
     // console.log(id)
@@ -42,9 +42,6 @@ class ArticleByCommentid extends Component {
       this.setState(prevState => {
         return { comments: [newComment, ...prevState.comments] }
       })
-    else{
-      
-    }
   }
 
   deleteComments = comment_id => {
