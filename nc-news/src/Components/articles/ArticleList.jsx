@@ -4,17 +4,21 @@ import { Link } from "@reach/router";
 import * as api from './../../api'
 import SortBy from '../articles/SortBy'
 import Loading from '../Loading'
+import ErrorHandle from '../ErrorHandle';
 class ArticleList extends Component {
   state = {
     articles: [],
     sort_by: null,
     order: 'desc',
     author: null,
-    isLoading: true
+    isLoading: true,
+    error: null
   }
   render() {
-    const { articles, isLoading } = this.state
+    const { articles, isLoading, error } = this.state
+    if (error) return <ErrorHandle status={error.status} msg={error.msg} />
     if (isLoading) return <Loading />
+
     return (
       <section>
         <div className="articleHome">
@@ -22,23 +26,26 @@ class ArticleList extends Component {
             updateOrder={this.updateOrder}
             updateAuthor={this.updateAuthor}
           />
-          {articles.length !== 0 &&
-            <main>
-              <Link to='/users'><h2>Find All users</h2></Link>
-              {articles.map(article =>
 
-                <div className='articlecard' key={article.article_id}>
-                  <Link to={`/articles/${article.article_id}`}>
-                    <ArticleCard article={article} />
-                  </Link>
-                  <p>Comments:{article.comment_count}</p>
-                  <p>author:{article.author}</p>
-                  <p>Created:{article.created_at.slice(0, 10)}</p>
-                  <p>vote:{article.votes}</p>
-                </div>)}
+          {articles.length !== 0 ?
+            (
+              <main>
+                <Link to='/users'><h2>Find All users</h2></Link>
+                {articles.map(article =>
+                  <div className='articlecard' key={article.article_id}>
+                    <Link to={`/articles/${article.article_id}`}>
+                      <ArticleCard article={article} />
+                    </Link>
+                    <p>Comments:{article.comment_count}</p>
+                    <p>author:{article.author}</p>
+                    <p>Created:{article.created_at.slice(0, 10)}</p>
+                    <p>vote:{article.votes}</p>
+                  </div>)
 
-            </main>
-          }
+                }
+
+              </main>) : (<ErrorHandle status={200} msg={`invalid topics`} />)}
+
         </div>
       </section>
     );
@@ -66,11 +73,16 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
+    const { slug } = this.props
     const { sort_by, order, author } = this.state
-    api.getAllArticles({ slug: this.props.slug, sort_by, order, author }).then(({ data }) => {
-      console.log(data)
-      this.setState({ articles: data.articles, isLoading: false });
+    api.getAllArticles({ slug, sort_by, order, author }).then(({ data }) => {
+      this.setState({ articles: data.articles, isLoading: false, error: null });
     })
+      .catch((error) => {
+        const { status } = error.response;
+        const { msg } = error.response.data
+        this.setState({ error: { status, msg }, isLoading: false })
+      })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -82,7 +94,6 @@ class ArticleList extends Component {
     const byAuthor = (prevState.author !== author)
     if (changeBySort || topicChange || changeOrder || byAuthor) {
       api.getAllArticles({ slug, sort_by, order, author }).then(({ data }) => {
-        console.log(data)
         this.setState({ articles: data.articles })
       }).catch(console.log)
     }

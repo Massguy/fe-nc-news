@@ -6,7 +6,7 @@ class CommentBox extends Component {
     const { username } = this.props;
     return (<form onSubmit={this.handleSubmit}>
       <label>Have a say {username}
-        <textarea onChange={this.handleChange} ></textarea>
+        <textarea onChange={this.handleChange} required ></textarea>
       </label>
       <button type='submit'>submit</button>
     </form>);

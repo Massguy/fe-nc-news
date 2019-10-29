@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import * as api from '../../api'
 import { Link } from "@reach/router";
-import { navigate } from '@reach/router/lib/history';
-import Error404 from '../Error404'
+import ErrorHandle from '../ErrorHandle';
+
 
 class SingleArticle extends Component {
   ''
@@ -16,9 +16,9 @@ class SingleArticle extends Component {
       article, plusOne, error
     } = this.state;
 
-    if (article === undefined) {
-      return <Error404 {...error} />;
-    }
+    if (error)
+      return <ErrorHandle status={error.status} msg={error.msg} />;
+
     return (
       <div className='singleArticle'>
         <h1>{article.title}</h1>
@@ -42,15 +42,16 @@ class SingleArticle extends Component {
   }
   componentDidMount() {
     const { id } = this.props
-    api.getSingleArticle(id).then(article => this.setState({ article, error: null })
+    api.getSingleArticle(id).then(article => {
+      console.log(article)
+      this.setState({ article, error: null })
+    }
     ).catch((error) => {
+      console.log(error)
       const { msg } = error.response.data;
       const { status } = error.response;
       this.setState({ error: { status, msg } });
     });
-  }
-  navigateArticles = () => {
-    navigate('/')
   }
 
 }

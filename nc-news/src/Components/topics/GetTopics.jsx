@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import * as api from '../../api'
 import { Link } from "@reach/router";
+import ErrorHandle from '../ErrorHandle';
 
 class GetTopics extends Component {
   state = { topics: [], error: null }
   render() {
-    const { topics } = this.state
-
+    const { topics, error } = this.state
+    if (topics.length === 0) return <ErrorHandle msg={error.msg} />
     return (<div>
       {topics.map(topic => <div key={topic.slug}>
         <Link to={`/topics/${topic.slug}`}>
@@ -20,6 +21,10 @@ class GetTopics extends Component {
     api.getAllTopics().then(({ data }) => {
       this.setState(data);
     })
+      .catch((error) => {
+        const { msg } = error.response.data
+        this.setState({ error: { msg } })
+      })
   }
 
 }

@@ -1,12 +1,11 @@
 import React from 'react'
 import { navigate } from "@reach/router";
 
-const Error404 = (props) => {
-  const { status = 404, msg = 'Page Not FOund' } = props;
+const ErrorHandle = ({ status, msg }) => {
   return (
     <div>
-      <h2 className='errorHead'>{status}Error!!!!!!!!!!!!</h2>
-      <p className='errorMessage'>{msg}</p>
+      <h2>{status}Error!!!!!!!!!!!!</h2>
+      <p>{msg}</p>
       <button onClick={backToHomePage}>Go back to Homepage :)</button>
     </div>
   )
@@ -16,4 +15,4 @@ const backToHomePage = () => {
   navigate('/')
 }
 
-export default Error404
+export default ErrorHandle

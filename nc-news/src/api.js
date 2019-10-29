@@ -11,8 +11,6 @@ export const getAllArticles = ({ slug, sort_by, author, order, p }) => {
       author: author,
       p: p,
     }
-  }).catch(error => {
-    console.log(error)
   });
 }
 
@@ -20,18 +18,14 @@ export const getSingleArticle = (id) => {
   return axios.get(`${baseURL}/articles/${id}`)
     .then(response => {
       return response.data.article
-    }).catch(error => {
-      console.log(error)
-    });
+    })
 }
 
 export const getCommentByArticleid = (id) => {
   return axios.get(`${baseURL}/articles/${id}/comments`)
     .then(response => {
       return response.data.comments
-    }).catch(error => {
-      console.log(error)
-    });
+    })
 }
 
 export const updateArticleVote = (vote, id) => {
@@ -41,20 +35,16 @@ export const updateArticleVote = (vote, id) => {
   })
     .then(response => {
       return response.data.updateVote
-    }).catch(error => {
-      console.log(error)
-    });
+    })
 }
 
-export const updateCommentVote = (vote, id) => {
-  return axios.patch(`${baseURL}/articles/${id}/comments`, {
-    inc_votes: vote
+export const updateCommentVote = (votes, comment_id) => {
+  return axios.patch(`${baseURL}/comments/${comment_id}`, {
+    inc_votes: votes
   })
     .then(response => {
       return response.data.updateVote
-    }).catch(error => {
-      console.log(error)
-    });
+    })
 }
 
 export const postComment = (id, body) => {
@@ -63,18 +53,14 @@ export const postComment = (id, body) => {
 
       return response.data.comment
 
-    }).catch(error => {
-      console.log(error)
-    });
+    })
 }
 export const deleteComment = (comment_id) => {
   return axios.delete(`${baseURL}/comments/${comment_id}`)
 }
 export const getAllTopics = () => {
   return axios.get(`${baseURL}/topics`)
-    .catch(error => {
-      console.log(error)
-    });
+
 }
 
 export const getUsers = () => {
