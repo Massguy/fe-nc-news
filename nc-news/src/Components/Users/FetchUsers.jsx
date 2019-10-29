@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import * as api from '../../api'
-import { Link } from "@reach/router";
+import { Link } from "@reach/router"; s
 import Loading from '../Loading'
 class FetchUsers extends Component {
   state = { users: [], isLoading: true }
   render() {
-    const { users } = this.state
+    const { users, isLoading } = this.state
     if (isLoading) return <Loading />
     return (<div>
       {users.map((user) =>
