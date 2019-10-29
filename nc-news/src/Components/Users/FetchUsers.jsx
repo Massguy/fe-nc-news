@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import * as api from '../../api'
 import { Link } from "@reach/router";
+import Loading from '../Loading'
 class FetchUsers extends Component {
-  state = { users: [] }
+  state = { users: [], isLoading: true }
   render() {
     const { users } = this.state
+    if (isLoading) return <Loading />
     return (<div>
       {users.map((user) =>
         <div>
@@ -17,7 +19,7 @@ class FetchUsers extends Component {
   componentDidMount() {
     api.getUsers().then(({ data }) => {
       console.log(data.users)
-      this.setState({ users: data.users })
+      this.setState({ users: data.users, isLoading: false })
     })
   }
 

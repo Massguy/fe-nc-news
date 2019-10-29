@@ -5,12 +5,14 @@ import '../../App.css'
 import * as api from '../../api'
 import CommentBox from './CommentBox';
 import ErrorHandle from '../ErrorHandle';
+import Loading from '../Loading'
 class ArticleByCommentid extends Component {
   state = { comments: [], error: null, isLoading: true }
   render() {
     const { username, id } = this.props
     // console.log(id)
-    const { comments, error } = this.state
+    const { comments, error, isLoading } = this.state
+    if (isLoading) return <Loading />
     if (error) return <ErrorHandle status={error.status} msg={error.msg} />
     return (<div>
       <CommentBox updateComments={this.updateComments} username={username} id={id} />

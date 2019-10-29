@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import * as api from '../../api'
 import { Link } from "@reach/router";
 import ErrorHandle from '../ErrorHandle';
+import Loading from '../Loading'
 
 class GetTopics extends Component {
   state = { topics: [], error: null, isLoading: true }
   render() {
     const { topics, error } = this.state
+    if (isLoading) return <Loading />
     if (topics.length === 0) return <ErrorHandle msg={error.msg} />
     return (<div>
       {topics.map(topic => <div key={topic.slug}>
