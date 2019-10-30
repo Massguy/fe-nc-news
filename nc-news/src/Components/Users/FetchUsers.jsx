@@ -18,7 +18,6 @@ class FetchUsers extends Component {
   }
   componentDidMount() {
     api.getUsers().then(({ data }) => {
-      console.log(data.users)
       this.setState({ users: data.users, isLoading: false })
     })
   }

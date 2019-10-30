@@ -26,7 +26,6 @@ class CommentCard extends Component {
   updateVote = value => {
     const { comment, id } = this.props
     api.updateCommentVote(value, comment.comment_id, id)
-    console.log(id, '<<<commentcard')
     this.setState(prevState => {
       return { plusOne: prevState.plusOne + value }
     })

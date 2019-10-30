@@ -10,7 +10,6 @@ class ArticleByCommentid extends Component {
   state = { comments: [], error: null, isLoading: false }
   render() {
     const { username, id } = this.props
-    // console.log(id)
     const { comments, error, isLoading } = this.state
     if (isLoading) return <Loading />
     if (error) return <ErrorHandle status={error.status} msg={error.msg} />
@@ -33,7 +32,6 @@ class ArticleByCommentid extends Component {
       })
 
     ).catch((error) => {
-      console.log(error)
       const { status } = error.response;
       const { msg } = error.response.data
       this.setState({ error: { status, msg }, isLoading: true })

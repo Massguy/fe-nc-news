@@ -29,7 +29,7 @@ export const getCommentByArticleid = (id) => {
 }
 
 export const updateArticleVote = (vote, id) => {
-  console.log(id)
+
   return axios.patch(`${baseURL}/articles/${id}`, {
     inc_votes: vote
   })
@@ -64,9 +64,7 @@ export const getAllTopics = () => {
 }
 
 export const getUsers = () => {
-  return axios.get(`${baseURL}/users`).catch(error => {
-    console.log(error)
-  });
+  return axios.get(`${baseURL}/users`)
 }
 
 export const getUserByUsername = (username) => {
