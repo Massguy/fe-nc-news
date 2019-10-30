@@ -38,7 +38,7 @@ class ArticleByCommentid extends Component {
     })
   }
   updateComments = (newComment) => {
-    if (!newComment.length === 0)
+    if (newComment)
       this.setState(prevState => {
         return { comments: [newComment, ...prevState.comments] }
       })
