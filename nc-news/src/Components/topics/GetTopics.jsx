@@ -9,7 +9,7 @@ class GetTopics extends Component {
   render() {
     const { topics, error, isLoading } = this.state
     if (isLoading) return <Loading />
-    if (topics.length === 0) return <ErrorHandle msg={error.msg} />
+    if (topics.length === 0) return <ErrorHandle status={error.status} msg={error.msg} />
     return (<div>
       {topics.map(topic => <div key={topic.slug}>
         <Link to={`/topics/${topic.slug}`}>
@@ -24,8 +24,9 @@ class GetTopics extends Component {
       this.setState(data);
     })
       .catch((error) => {
+        const { status } = error.response;
         const { msg } = error.response.data
-        this.setState({ error: { msg }, isLoading: false })
+        this.setState({ error: { status, msg }, isLoading: false })
       })
   }
 

@@ -21,17 +21,22 @@ class SingleArticle extends Component {
       return <ErrorHandle status={error.status} msg={error.msg} />;
     if (isLoading) return <Loading />
     return (
-      <div className='singleArticle'>
-        <h1>{article.title}</h1>
-        <h4>Author:{article.author}</h4>
-        <p className='articleBody'>{article.body}</p>
-        <p>votes:{article.votes + plusOne}</p>
-        <button disabled={plusOne === 1} onClick={() => this.updateVote(1)}>Good</button>
-        <button disabled={plusOne === -1} onClick={() => this.updateVote(-1)}>Bad</button>
-        <Link to={`/articles/${article.article_id}/comments`}>
-          <h4>Show Comments</h4>
-        </Link>
-      </div >
+      <div>
+        {article.length !== 0 ?
+          (
+            <div className='singleArticle'>
+              <h1>{article.title}</h1>
+              <h4>Author:{article.author}</h4>
+              <p className='articleBody'>{article.body}</p>
+              <p>votes:{article.votes + plusOne}</p>
+              <button disabled={plusOne === 1} onClick={() => this.updateVote(1)}>Good</button>
+              <button disabled={plusOne === -1} onClick={() => this.updateVote(-1)}>Bad</button>
+              <Link to={`/articles/${article.article_id}/comments`}>
+                <h4>Show Comments</h4>
+              </Link>
+            </div >
+          ) : (<ErrorHandle />)}
+      </div>
     );
   }
   updateVote = value => {

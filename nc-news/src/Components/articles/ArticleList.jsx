@@ -44,7 +44,7 @@ class ArticleList extends Component {
 
                 }
 
-              </main>) : (<ErrorHandle status={200} msg={`invalid topics`} />)}
+              </main>) : (<ErrorHandle status={404} msg={`Route Not Found`} />)}
 
         </div>
       </section>
