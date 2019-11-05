@@ -95,7 +95,7 @@ class ArticleList extends Component {
     if (changeBySort || topicChange || changeOrder || byAuthor) {
       api.getAllArticles({ slug, sort_by, order, author }).then(({ data }) => {
         this.setState({ articles: data.articles })
-      }).catch(console.log)
+      })
     }
   }
 }
