@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import * as api from '../../api'
+import './CommentSection.css'
 class CommentBox extends Component {
   state = { username: "", body: "" }
   render() {
     const { username } = this.props;
     return (<form onSubmit={this.handleSubmit}>
-      <label>Have a say {username}
-        <textarea onChange={this.handleChange} required ></textarea>
-      </label>
-      <button type='submit'>submit</button>
+      <div className="commentBox">
+      <label>Have a say {username}</label>
+        <textarea onChange={this.handleChange} required placeholder="Have a say" cols="35" rows="5" style={{backgroundColor:'#fcfcfc'}}></textarea>
+      
+      </div>
+      <div className="CommentButtonContainer">
+      <button type='submit' className='commentCardButton' style={{backgroundColor:"darkgoldenrod"}}>submit</button>
+      </div>
     </form>);
   }
   handleChange = event => {

@@ -11,7 +11,7 @@ class FetchUsers extends Component {
     if (error) return <ErrorHandle status={error.status} msg={error.msg} />
     return (<div>
       {users.map((user) =>
-        <div>
+        <div key={user.name}>
           <Link to={`/users/${user.username}`}>
             <h1 key={user.name}>{user.name}</h1>
           </Link>

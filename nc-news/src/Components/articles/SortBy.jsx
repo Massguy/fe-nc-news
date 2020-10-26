@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './SortBy.css'
 
 class SortBy extends Component {
   state = {
@@ -8,20 +9,30 @@ class SortBy extends Component {
   render() {
     const { updateSortby, updateOrder, updateAuthor } = this.props
     return (
-      <div className='sortBy'>
-        <form className='commentCount'>Filter:
+      <div className="sortBy">
+      <div className='sortbyContainer'>
+        <form className='commentCount'>
+        <div className="sortBy-select">
+          <label>Filter by </label>
+       
           <select onChange={updateSortby}>
             <option value='comment_count'>comment_count</option>
             <option value='created_at'>date created</option>
             <option value='votes'>votes</option>
           </select>
+          </div>
         </form>
-        <form className='order'>Order:<select onChange={updateOrder}>
+        <form className='order'>
+        <div className="sortBy-select">
+          <label>Order: </label>
+          <select onChange={updateOrder}>
           <option value='asc'>ascending</option>
           <option value='desc'>descending</option>
         </select>
+        </div>
         </form>
-        <form>Author:
+        <form><div className="sortBy-select">
+          <label>Author: </label>
           <select onChange={updateAuthor}>
             <option value='none'>none </option>
             <option value='weegembump'>weegembump </option>
@@ -31,7 +42,9 @@ class SortBy extends Component {
             <option value='tickle122'>tickle122 </option>
             <option value='cooljmessy'>cooljmessy </option>
           </select>
+          </div>
         </form>
+      </div>
       </div>
     );
   }

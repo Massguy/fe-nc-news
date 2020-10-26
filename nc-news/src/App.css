@@ -1,137 +1,48 @@
-
-
-.App {
-  text-align: center;
-     background-image: linear-gradient(to top, #ffffff 0%, rgb(252, 153, 5));
-} 
-
-.Header{
-   overflow: hidden;
-  padding: 20px 10px;
-  width:100%;
+/* .App {
+  background-color: rgb(227, 220, 245);
+} */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "PT Sans", sans-serif;
 }
-.head{
-  align-content: flex-start;
+
+body {
+  display: block;
 }
-.navBar {
-   /* padding: 14px 16px; */
-    margin-left: 25%;
-    margin-right: 25%;
-     border-radius: 50px;
+
+.home,
+.coding,
+.cooking,
+.sign-up {
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
 }
-.errorHead{
+
+.coding {
+  background-position: center;
+
+  background-repeat: no-repeat;
+  color: #fff;
   font-size: 100px;
-  background-color: red;
 }
 
-.errorMessage{
-  font-size: 50px;
-  background-color: red;
-}
-.articleHome{
- box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
-  margin:50px;
-  border-radius: 50px;
-}
-.articleHome:hover{
-     background:linear-gradient(to top, #ff9900 0%, #ffffcc 100%);
+.cooking {
+  background-position: center;
+  background-size: fill;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
 }
 
-.singleArticle {
-  box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 100);
-  background-color: #ffffff;
-  margin:5%;
-  border-radius: 20px;
-  padding: 26px;
-}
-
-.articleBody{
-    
-    background-color:white;
-    line-height:250%;
-}
-.articlecard{
-    box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 100);
-  padding: 26px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  margin:20px;
-
-}
-
-.commentCount{
-  margin:10px;
-}
-.order{
-  margin:10px;
-}
-.commentbox {
- width: 90;
-  border: 5px solid rgb(231, 26, 26);
-  padding: 50px;
-  margin: 30px;
-  background-color: rgb(230, 230, 230);
-   box-shadow: 5px 10px #888888;
-}
-.homeButton {
-    background-color:rgb(209, 182, 240);
-  color: black;
-  border: 2px solid #4CAF50;
-   transition-duration: 0.4s;
-   border-radius: 15px;
-   font-size:30px;
-   margin:10px;
-
-}
-.homeButton:hover{
-   background-color: #4CAF50; /* Green */
-  color: white;
-}
-
-.cookingButton{
-    background-color:rgb(209, 182, 240);
-  color: black;
-  border: 2px solid #4CAF50;
-   transition-duration: 0.4s;
-   border-radius: 15px;
-   font-size:30px;
-   margin:10px;
-
-}
-.cookingButton:hover{
-   background-color: #4CAF50; /* Green */
-  color: white;
-}
-
-.footballButton{
-      background-color:rgb(209, 182, 240);
-  color: black;
-  border: 2px solid #4CAF50;
-   transition-duration: 0.4s;
-   border-radius: 15px;
-   font-size:30px;
-   margin:10px;
-
-}
-.footballButton:hover{
-   background-color: #4CAF50; /* Green */
-  color: white;
-}
-
-.codingButton{
-      background-color:rgb(209, 182, 240);
-  color: black;
-  border: 2px solid #4CAF50;
-   transition-duration: 0.4s;
-   border-radius: 15px;
-   font-size:30px;
-   margin:10px;
-
-}
-.codingButton:hover{
-   background-color: #4CAF50; /* Green */
-  color: white;
+.sign-up {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
 }

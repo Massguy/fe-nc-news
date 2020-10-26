@@ -1,0 +1,79 @@
+.commentBox {
+  display: block;
+  height: 100px;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.commentbox {
+  box-shadow: 8px 4px 8px 4px rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+
+  background-color: rgb(245, 246, 255);
+  height: 350px;
+  width: 100%;
+}
+
+.commentBoxContainer {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.commentCardButton {
+  border: none;
+  color: white;
+  margin-top: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 36px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.CommentButtonContainer {
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .commentbox {
+    box-shadow: 8px 4px 8px 4px rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+
+    background-color: rgb(245, 246, 255);
+    height: 250px;
+    width: 100%;
+  }
+
+  .commentBoxContainer {
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  textArea {
+    height: 100px;
+    width: 500px;
+  }
+
+  label {
+    display: block;
+  }
+  .CommentButtonContainer {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,51 @@
+.sortBy {
+  justify-content: center;
+  align-items: center;
+}
+
+.sortbyContainer {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  z-index: 999;
+  background-color: darkgoldenrod;
+}
+
+@media screen and (max-width: 735px) {
+  .sortbyContainer {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 150px;
+
+    margin-left: 0;
+    margin-right: 0;
+
+    background-color: darkgoldenrod;
+    display: block;
+  }
+  .sortBy-select {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-right: 10px;
+
+    color: white;
+  }
+  label {
+    display: block;
+  }
+  select {
+    width: 100%;
+  }
+}
+
+.sortBy-select {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-right: 10px;
+  color: white;
+}

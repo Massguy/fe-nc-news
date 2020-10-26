@@ -1,0 +1,73 @@
+.singleArticle {
+  height: 90vh;
+}
+
+.articleContainer {
+  background-color: rgb(250, 253, 253);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  line-height: 2.5;
+  box-shadow: 8px 4px 8px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 769px) {
+  .SingleArticleContainer {
+    background-color: rgb(250, 253, 253);
+    width: 100%;
+    line-height: 2.5;
+    box-shadow: 8px 4px 8px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+  }
+}
+.articleTitle {
+  text-align: center;
+  /* margin-top: 10px; */
+  background-color: black;
+  color: white;
+}
+
+.articleUser {
+  background-color: darkgoldenrod;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.votesContainer {
+  background-color: rgb(7, 7, 7);
+  text-align: center;
+  justify-content: center;
+  color: white;
+}
+
+.thumbsUpButton {
+  background-color: #000000; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+
+  width: 250px;
+}
+
+.thumbsDownVote {
+  background-color: #000000; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.showComments {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: darkgoldenrod;
+}

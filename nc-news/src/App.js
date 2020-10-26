@@ -1,44 +1,34 @@
-import React, { Component } from 'react';
-import './App.css';
-import Header from './Components/Header';
-import Nav from './Components/Nav';
-import ArticleList from './Components/articles/ArticleList';
-import SingleArticle from './Components/articles/SingleArticle'
-import GetTopics from './Components/topics/GetTopics'
+import React, { Component } from "react";
+import "./App.css";
+
 import { Router } from "@reach/router"
-import CommentByArticle from './Components/comments/CommentByArticle'
-import FetchUsers from './Components/Users/FetchUsers'
-import FetchUserByUsername from './Components/Users/FetchUserByUsername';
-import EndpointError from './Components/EndPointError';
+import ArticleList from "./Components/articles/ArticleList";
+import SingleArticle from "./Components/articles/SingleArticle";
+import GetTopics from "./Components/topics/GetTopics";
+
+import CommentByArticle from "./Components/comments/CommentByArticle";
+import FetchUsers from "./Components/Users/FetchUsers";
+import FetchUserByUsername from "./Components/Users/FetchUserByUsername";
+import EndpointError from "./Components/EndPointError";
+import Navbar from "./Components/Navbar";
 
 class App extends Component {
   state = {
-    username: 'jessjelly'
-  }
+    username: "jessjelly",
+  };
 
   updateUser = (event) => {
-    const username = event.target.value
-    this.setState({ username })
-  }
+    const username = event.target.value;
+    this.setState({ username });
+  };
   render() {
-    const { username } = this.state
-
+    const { username } = this.state;
 
     return (
       <div className="App">
-        <Header />
-        <Nav username={username} />
-        <form>Username:
-          <select onChange={this.updateUser}>
-            <option value='weegembump'>weegembump </option>
-            <option value='grumpy19'>grumpy19 </option>
-            <option value='happyamy2016'>happyamy2016 </option>
-            <option value='jessjelly'>jessjelly </option>
-            <option value='tickle122'>tickle122 </option>
-            <option value='cooljmessy'>cooljmessy </option>
-          </select>
-        </form>
-        <Router>
+       <Navbar />
+       <Router>
+       
           <ArticleList path='/' username={username} />
           <ArticleList path='/articles' />
           <ArticleList path='/topics/:slug' />
@@ -52,8 +42,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
-
 
 export default App;
